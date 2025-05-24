@@ -38,6 +38,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.clbDotari = new System.Windows.Forms.CheckedListBox();
             this.btnAdaugaSala = new System.Windows.Forms.Button();
+            this.dgvSali = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSali)).BeginInit();
             this.SuspendLayout();
             // 
             // lvSali
@@ -128,11 +130,23 @@
             this.btnAdaugaSala.UseVisualStyleBackColor = true;
             this.btnAdaugaSala.Click += new System.EventHandler(this.btnAdaugaSala_Click);
             // 
+            // dgvSali
+            // 
+            this.dgvSali.AllowUserToAddRows = false;
+            this.dgvSali.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSali.Location = new System.Drawing.Point(138, 55);
+            this.dgvSali.Name = "dgvSali";
+            this.dgvSali.ReadOnly = true;
+            this.dgvSali.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSali.Size = new System.Drawing.Size(290, 154);
+            this.dgvSali.TabIndex = 10;
+            // 
             // FormAfisareSali
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(562, 609);
+            this.Controls.Add(this.dgvSali);
             this.Controls.Add(this.btnAdaugaSala);
             this.Controls.Add(this.clbDotari);
             this.Controls.Add(this.label4);
@@ -145,6 +159,7 @@
             this.Controls.Add(this.lvSali);
             this.Name = "FormAfisareSali";
             this.Text = "FormAfisareSali";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSali)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -162,5 +177,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckedListBox clbDotari;
         private System.Windows.Forms.Button btnAdaugaSala;
+        private System.Windows.Forms.DataGridView dgvSali;
     }
 }

@@ -11,28 +11,42 @@ namespace Gestiune_Cinematograf
     {
         private AdministrareSali adminSali;
 
+        private class SalaAfisata
+        {
+            public int ID { get; set; }
+            public string Denumire { get; set; }
+            public int Capacitate { get; set; }
+            public string Tip { get; set; }
+            public string Dotari { get; set; }
+        }
+
         public FormAfisareSali()
         {
             InitializeComponent();
 
             adminSali = new AdministrareSali("sali.txt");
 
-            
+
             cmbTipSala.DataSource = Enum.GetValues(typeof(TipSala));
             cmbTipSala.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            
+
             clbDotari.Items.Clear();
             foreach (var dotare in Enum.GetValues(typeof(DotariSala)))
                 clbDotari.Items.Add(dotare);
 
-            
+            dgvSali.ReadOnly = true;
+            dgvSali.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvSali.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSali.AllowUserToAddRows = false;
+
+
             AfiseazaSali(adminSali.GetListaSali());
         }
 
         private void btnAdaugaSala_Click(object sender, EventArgs e)
         {
-            
+
             if (string.IsNullOrWhiteSpace(txtDenumire.Text))
             {
                 MessageBox.Show("Introduceti denumirea salii.");
@@ -68,25 +82,25 @@ namespace Gestiune_Cinematograf
 
         private void AfiseazaSali(List<Sala> sali)
         {
-            lvSali.Items.Clear();
-            lvSali.Columns.Clear();
+            dgvSali.DataSource = null;
 
-            lvSali.Columns.Add("ID", 40);
-            lvSali.Columns.Add("Denumire", 120);
-            lvSali.Columns.Add("Capacitate", 80);
-            lvSali.Columns.Add("Tip", 80);
-            lvSali.Columns.Add("Dotari", 150);
+            List<SalaAfisata> saliAfisate = new List<SalaAfisata>();
 
-            foreach (var sala in sali)
+            foreach (var s in sali)
             {
-                ListViewItem item = new ListViewItem(sala.Id.ToString());
-                item.SubItems.Add(sala.Denumire);
-                item.SubItems.Add(sala.Capacitate.ToString());
-                item.SubItems.Add(sala.Tip.ToString());
-                item.SubItems.Add(sala.Dotari.ToString());
+                SalaAfisata afisata = new SalaAfisata
+                {
+                    ID = s.Id,
+                    Denumire = s.Denumire,
+                    Capacitate = s.Capacitate,
+                    Tip = s.Tip.ToString(),
+                    Dotari = s.Dotari.ToString()
+                };
 
-                lvSali.Items.Add(item);
+                saliAfisate.Add(afisata);
             }
+
+            dgvSali.DataSource = saliAfisate;
         }
     }
 }

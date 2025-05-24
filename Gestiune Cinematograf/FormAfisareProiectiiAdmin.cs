@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Gestiune_Cinematograf
 {
-    public partial class FormAfisareProiectiiAdmin: Form
+    public partial class FormAfisareProiectiiAdmin : Form
     {
         private AdministrareProiectii adminProiectii;
         private List<Film> filme;
@@ -88,15 +88,20 @@ namespace Gestiune_Cinematograf
         {
             dgvProiectii.DataSource = null;
 
-            var proiectiiAfisate = proiectii.Select(p => new
+            var proiectiiAfisate = new List<object>();
+
+            foreach (var p in proiectii)
             {
-                ID = p.Id,
-                Film = p.Film.Titlu,
-                Sala = p.Sala.Denumire,
-                Ora = p.OraProiectiei,
-                Zi = p.Zi.ToString(),
-                Pret = p.PretBilet.ToString("0.00") + " lei"
-            }).ToList();
+                proiectiiAfisate.Add(new
+                {
+                    ID = p.Id,
+                    Film = p.Film.Titlu,
+                    Sala = p.Sala.Denumire,
+                    Ora = p.OraProiectiei,
+                    Zi = p.Zi.ToString(),
+                    Pret = p.PretBilet.ToString("0.00") + " lei"
+                });
+            }
 
             dgvProiectii.DataSource = proiectiiAfisate;
         }

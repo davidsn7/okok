@@ -381,7 +381,7 @@
             this.dgvFilme.ReadOnly = true;
             this.dgvFilme.RowHeadersVisible = false;
             this.dgvFilme.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvFilme.Size = new System.Drawing.Size(240, 150);
+            this.dgvFilme.Size = new System.Drawing.Size(286, 150);
             this.dgvFilme.TabIndex = 8;
             this.dgvFilme.SelectionChanged += new System.EventHandler(this.dgvFilme_SelectionChanged);
             // 
